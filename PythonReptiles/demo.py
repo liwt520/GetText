@@ -8,3 +8,4 @@ r=requests.get('https://www.runoob.com/bootstrap/bootstrap-tutorial.html')
 print(chardet.detect(r.content))
 r.encoding=chardet.detect(r.content)['encoding']
 print(r.text)
+print('123')
