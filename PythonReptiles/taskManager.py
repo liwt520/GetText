@@ -1,8 +1,9 @@
-#coding:utf-8
+#coding:utf-8  服务
 #taskManager.py for windows
 import queue
 from multiprocessing.managers import BaseManager 
 from multiprocessing import freeze_support
+import time
 #任务个数
 task_number=10
 #定义收发队列
@@ -33,6 +34,9 @@ def win_run():
             task.put(url)
         print ('try get result...')
         while(True):
+            if result.empty():
+                time.sleep(1)
+                continue
             print('result is %s'%result.get(timeout=10))
     except Exception as e:
         print('Manager error %s' % e)

@@ -1,4 +1,4 @@
-#coding:utf-8
+#coding:utf-8 客户端
 import time 
 from multiprocessing.managers import BaseManager
 #创建类似的QueueManager：
