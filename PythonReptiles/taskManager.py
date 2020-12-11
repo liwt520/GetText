@@ -1,14 +1,14 @@
 #coding:utf-8  服务
 #taskManager.py for windows
 import queue
-from multiprocessing.managers import BaseManager 
-from multiprocessing import freeze_support
+from multiprocessing.managers import BaseManager
+from multiprocessing import freeze_support,Queue
 import time
 #任务个数
 task_number=10
 #定义收发队列
-task_queue=queue.Queue(task_number)
-result_gueue=queue.Queue(task_number)
+task_queue = Queue(task_number)
+result_gueue= Queue(task_number)
 def get_task():
     return task_queue 
 def get_result():
@@ -21,7 +21,7 @@ def win_run():
     QueueManager.register('get_task_queue',callable=get_task)
     QueueManager.register('get_result_queue',callable=get_result)
     #绑定端口并设置验证口令，Windows下需要填写IP地址，Linux下不填默认为本地
-    manager=QueueManager(address=('127.0.0.1',8002),authkey='qiye'.encode())
+    manager=QueueManager(address=('192.168.10.130',8002),authkey='qiye'.encode())
     #启动
     manager.start()
     try:
@@ -45,5 +45,5 @@ def win_run():
         manager.shutdown()
 
 if __name__=='__main__':
-    freeze_support()
+    # freeze_support()
     win_run()

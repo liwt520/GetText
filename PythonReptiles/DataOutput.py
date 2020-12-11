@@ -10,8 +10,8 @@ class Dataoutput(object):
         if data is None:
             return 
         self.datas.append(data)
-        if len(self.datas)>10: 
-            self. output_html(self. filepath)
+        if len(self.datas)>0: 
+            self.output_html(self.filepath)
     def output_head(self,path):
         '''将HTML头写进去
         ：return：'''
@@ -20,11 +20,8 @@ class Dataoutput(object):
         fout.write("<body>")
         fout.write("<table>")
         fout.close()
-    def output_html(self):
-        fout=codecs.open('baike.html','w', encoding='utf-8')
-        fout.write("<html>") 
-        fout.write("<body>")
-        fout.write("<table>")
+    def output_html(self,path):
+        fout=codecs.open(path,'a', encoding='utf-8')
         for data in self.datas:
             fout.write("<tr>")
             fout.write("<td>%s</td>"% data['url'])
@@ -32,6 +29,11 @@ class Dataoutput(object):
             fout.write("<td>%s</td>"% data['summary'])
             fout.write("</tr>")
             self.datas.remove(data)
+        fout.close()
+    def output_end(self,path):
+        '''将HTML头写进去
+        ：return：'''
+        fout=codecs.open(path,'a',encoding='utf-8')
         fout.write("</table>")
         fout.write("</body>") 
         fout.write("</html>")

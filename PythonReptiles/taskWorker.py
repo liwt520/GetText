@@ -8,12 +8,14 @@ class QueueManager(BaseManager):
 QueueManager.register('get_task_queue')
 QueueManager.register('get_result_queue')
 #第二步：连接到服务器：
-server_addr='127.0.0.1'
+server_addr='192.168.10.130'
 print('Connect to server %s...'%server_addr)
 #端口和验证口令注意保持与服务进程完全一致：
-m=QueueManager(address=(server_addr,8002),authkey='qiye'.encode())
+m=QueueManager(address=(server_addr,8002),authkey='baike'.encode())
 #从网络连接：
 m.connect()
+print(m.address)
+
 #第三步：获取Queue的对象：
 task=m.get_task_queue()
 result =m.get_result_queue()

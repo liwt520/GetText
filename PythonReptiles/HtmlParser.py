@@ -37,7 +37,8 @@ class Htmlparser(object):
         '''
         data={}
         data['url']=page_url 
-        title=soup.find('div',class_='lemmawgt-1emmaritle-title1').find('h1')
+        title=soup.find('dd',class_='lemmaWgt-lemmaTitle-title')
         data['title']=title.get_text()
-        summary=soup.find('div',class_='lemma-summary')#获取tag中包含的所有文本内容,包括子孙tag中的内容,并将结果作为Unicode字符串返回data['summary']=summary.get_text()
+        summary=soup.find('div',class_='lemma-summary')#获取tag中包含的所有文本内容,包括子孙tag中的内容,并将结果作为Unicode字符串返回
+        data['summary']=summary.get_text()
         return data
